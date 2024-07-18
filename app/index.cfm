@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World Application</title>
+    <link rel="stylesheet" href="./build/static/css/main.a97ee1ed.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,8 +61,9 @@
     </style>
 </head>
 <body>
+    <div id="root"></div>
     <div class="container">
-        <h1>Hello, World!</h1>
+        <h1>Hello!</h1>
 
         <form method="post" action="index.cfm">
             <label for="name">Enter a name:</label>
@@ -113,5 +115,13 @@
         <cflocation url="index.cfm" addtoken="false">
     </cfif>
 
+    <script src="./build/static/js/main.d498a8bf.js"></script>
+    <script>
+        // Render the Navbar component
+        ReactDOM.render(
+            React.createElement(Navbar),
+            document.getElementById('root')
+        );
+    </script>
 </body>
 </html>
