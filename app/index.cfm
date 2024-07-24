@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World Application</title>
-    <link rel="stylesheet" href="./build/static/css/main.a97ee1ed.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -114,14 +113,5 @@
         </cfquery>
         <cflocation url="index.cfm" addtoken="false">
     </cfif>
-
-    <script src="./build/static/js/main.d498a8bf.js"></script>
-    <script>
-        // Render the Navbar component
-        ReactDOM.render(
-            React.createElement(Navbar),
-            document.getElementById('root')
-        );
-    </script>
 </body>
 </html>
