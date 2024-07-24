@@ -1,20 +1,42 @@
 #!/bin/bash
 set -e
+echo "Starting entrypoint script..."
+
 if [ "$1" = '/opt/mssql/bin/sqlservr' ]; then
-  # If this is the container's first run, initialize the application database
+  echo "SQL Server command detected..."
+
   if [ ! -f /tmp/app-initialized ]; then
-    # Initialize the application database asynchronously in a background process.
+    echo "Initializing application database..."
+
     function initialize_app_database() {
-      # Wait a bit for SQL Server to start.
-      sleep 15s
-      # Run all SQL files in the /data/sql directory
+      echo "Waiting for SQL Server to start..."
+
+      # Loop to check if SQL Server is ready
+      retries=50
+      wait_seconds=3
+      for i in $(seq 1 $retries); do
+        /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P SQLS3rv3r -Q "SELECT 1" && break
+        echo "SQL Server is not ready yet... retrying in $wait_seconds seconds..."
+        sleep $wait_seconds
+      done
+
+      echo "Running SQL scripts..."
       for f in /data/sql/*.sql; do
+        echo "Executing $f..."
         /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P SQLS3rv3r -d master -i "$f"
       done
-      # Note that the container has been initialized so future starts won't wipe changes to the data
+
+      echo "Initialization complete. Marking as initialized..."
       touch /tmp/app-initialized
     }
+
     initialize_app_database &
+  else
+    echo "Application database already initialized."
   fi
+else
+  echo "Non-SQL Server command detected: $@"
 fi
+
+echo "Executing passed command: $@"
 exec "$@"
