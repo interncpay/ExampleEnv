@@ -1,4 +1,4 @@
-version: "3.9"  # Use the higher version for compatibility
+version: "3.9"
 
 services:
   sql:
@@ -33,6 +33,7 @@ services:
     volumes:
       - "./coldfusion-app:/app"
       - "./data:/data"
+      - "./react-app/dist:/app/react-build"
     environment:
       acceptEULA: "YES"
       password: "ColdFusion"
