@@ -31,7 +31,7 @@ services:
     ports:
       - "8500:8500"
     volumes:
-      - "./app:/app"
+      - "./coldfusion-app:/app"
       - "./data:/data"
     environment:
       acceptEULA: "YES"
@@ -48,7 +48,7 @@ services:
   react:
     stdin_open: true
     build:
-      context: ./react-features
+      context: ./react-app
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -56,7 +56,7 @@ services:
       - network
     volumes:
       - "/app/node_modules"
-      - "./react-features:/app"
+      - "./react-app:/app"
     environment:
       - CHOKIDAR_USEPOLLING=true
 
