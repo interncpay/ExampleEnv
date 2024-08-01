@@ -2,13 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World Application</title>
+    <title>Full Application</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
         }
         .container {
             width: 50%;
@@ -60,7 +76,15 @@
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.cfm">Home</a>
+        <a href="about.cfm">About</a>
+        <a href="services.cfm">Services</a>
+        <a href="react.cfm">React App</a> <!-- Link to ColdFusion page handling redirect -->
+    </div>
+
+    <!-- Content Section -->
     <div class="container">
         <h1>Hello!</h1>
 
