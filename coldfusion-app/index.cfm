@@ -81,7 +81,7 @@
         <a href="index.cfm">Home</a>
         <a href="about.cfm">About</a>
         <a href="services.cfm">Services</a>
-        <a href="react.cfm">React App</a> <!-- Link to ColdFusion page handling redirect -->
+        <a href="react.cfm">React App</a>
     </div>
 
     <!-- Content Section -->
