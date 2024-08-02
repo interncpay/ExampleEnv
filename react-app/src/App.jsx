@@ -8,9 +8,9 @@ function App() {
     <div>
       <nav className="navbar">
         <a href="/">Home</a>
-        <a href="/about">About</a>
+        <a href="/react-build/pages/index.html">About</a>
         <a href="/services">Services</a>
-        <a href="/react">React App</a>
+        <a href="/react-build/index.html">React App</a>
       </nav>
 
       <div className="container">
