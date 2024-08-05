@@ -8,3 +8,11 @@ podman compose up -d : this command will whip up the containers on your local ma
 After this point you may start developing, testing or further improving the container solution.
 
 Next stages for this project include developing and enabling React componenets as migration towards React begins.
+
+Important things to install:
+- WSL
+- Podman Desktop
+- Python 3.-
+- Docker
+- pip3 install podman-compose
+- Node.js
