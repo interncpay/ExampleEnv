@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Full Application</title>
+    <title>Documentation Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,56 +86,42 @@
 
     <!-- Content Section -->
     <div class="container">
-        <h1>ColdFusion Landing Page</h1>
+        <h1>Project Documentation</h1>
+        <div class="card">
+            <h2>Overview</h2>
+            <p>This project connects a React and a ColdFusion web application, while also enabling local development for both. It is a React + Vite project and is fully containerized using Podman.</p>
+        </div>
 
-        <form method="post" action="index.cfm">
-            <label for="name">Enter a name:</label>
-            <input type="text" id="name" name="name" required>
-            <button type="submit">Add Name</button>
-        </form>
+        <div class="container">
+            <h2>Features</h2>
+            <ul>
+                <li>Dynamic Content Loading</li>
+                <li>Component-Based Architecture</li>
+                <li>State Management</li>
+                <li>Efficient and Scalable Development</li>
+            </ul>
+        </div>
 
-        <cfif structKeyExists(form, "name")>
-            <cfquery datasource="Project">
-                INSERT INTO Names (Name)
-                VALUES (<cfqueryparam value="#form.name#" cfsqltype="cf_sql_varchar">);
-            </cfquery>
-            <cflocation url="index.cfm" addtoken="false">
-        </cfif>
+        <div class="container">
+            <h2>Usage</h2>
+            <p>To start the application, use the following commands:</p>
+            <pre>
+                <code>
+docker-compose up
+                </code>
+            </pre>
+            <p>This will spin up the necessary containers and you can access the application at <a href="http://localhost:8500">http://localhost:8500</a>.</p>
+        </div>
 
-        <cfquery name="getNames" datasource="Project">
-            SELECT ID, Name FROM Names;
-        </cfquery>
-
-        <h2>Names:</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <cfoutput query="getNames">
-                    <tr>
-                        <td>#getNames.Name#</td>
-                        <td>
-                            <form method="post" action="index.cfm">
-                                <input type="hidden" name="deleteID" value="#getNames.ID#">
-                                <button type="submit">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                </cfoutput>
-            </tbody>
-        </table>
+        <div class="container">
+            <h2>APIs</h2>
+            <p>The application exposes the following APIs:</p>
+            <ul>
+                <li><code>GET /api/names.cfm?action=get</code> - Fetch all names</li>
+                <li><code>POST /api/names.cfm</code> - Add a new name</li>
+                <li><code>POST /api/names.cfm</code> - Delete a name (requires <code>id</code> parameter)</li>
+            </ul>
+        </div>
     </div>
-
-    <!-- Handle deletion -->
-    <cfif structKeyExists(form, "deleteID")>
-        <cfquery datasource="Project">
-            DELETE FROM Names WHERE ID = <cfqueryparam value="#form.deleteID#" cfsqltype="cf_sql_integer">;
-        </cfquery>
-        <cflocation url="index.cfm" addtoken="false">
-    </cfif>
 </body>
 </html>
